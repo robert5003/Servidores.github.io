@@ -1,0 +1,90 @@
+configuracion del  router 1
+hecho por Roberto
+
+ena
+conf t
+host R1
+
+int G0/0
+no shut
+ip add 10.0.0.1 255.255.255.252
+exit
+int G0/1
+no shut
+ip add 30.0.0.1 255.255.255.252
+exit
+int G0/2
+no shut
+ip add 192.168.10.1 255.255.255.0
+exit
+
+router ospf 10
+router-id 1.1.1.1
+net 10.0.0.0 0.0.0.3 area 0
+net 30.0.0.0 0.0.0.3 area 0
+net 192.168.10.0 0.0.0.255 area 0
+
+
+
+configuracion del  router 2
+hecho por Larin
+
+ena
+conf t
+host R2
+
+int G0/0
+no shut
+ip add 10.0.0.2 255.255.255.252
+exit
+int G0/1
+no shut
+ip add 20.0.0.1 255.255.255.252
+exit
+int G0/2
+no shut
+ip add 192.168.20.1 255.255.255.0
+exit
+
+router ospf 10
+router-id 2.2.2.2
+net 10.0.0.0 0.0.0.3 area 0
+net 20.0.0.0 0.0.0.3 area 0
+net 192.168.20.0 0.0.0.255 area 0
+
+configuracion del  router 3
+hecho por Larin
+
+ena
+conf t
+host R3
+
+int G0/0
+no shut
+ip add 20.0.0.2 255.255.255.252
+exit
+int G0/1
+no shut
+ip add 30.0.0.2 255.255.255.252
+exit
+int G0/2
+no shut
+ip add 192.168.30.1 255.255.255.0
+exit
+
+router ospf 10
+router-id 3.3.3.3
+net 20.0.0.0 0.0.0.3 area 0
+net 30.0.0.0 0.0.0.3 area 0
+net 192.168.30.0 0.0.0.255 area 0
+
+
+DATO: 
+sh ip ospf 10: para ver si funciona
+sh ip ospf nei: para ver los vecinos 
+si sale en las lineas vecinas el BDR
+BDR: backup direcional router el router de respaldo
+
+sh ip ospf database: 
+
+sh ip ospf interface: para ver como esta las interfaces de la red
